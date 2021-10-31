@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.view.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="Netflix" >
         <action
             android:id="@+id/action_homeFragment_to_movieDetails"
             app:destination="@id/movieDetails"
@@ -19,7 +19,7 @@
     <fragment
         android:id="@+id/movieDetails"
         android:name="com.view.MovieDetails"
-        android:label="MovieDetails" >
+        android:label="Movie Details" >
         <argument
             android:name="fullDetails"
             app:argType="com.model.Result" />

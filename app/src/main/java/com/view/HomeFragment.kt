@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -14,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.adapters.MovieAdapter
+import com.bumptech.glide.Glide
 import com.model.Result
 import com.model.TopRated
 import com.moviehub.MainActivity
@@ -29,12 +31,12 @@ class HomeFragment : Fragment() {
     private lateinit var topRatedMoviesRv: RecyclerView
     private lateinit var upcomingMoviesRv: RecyclerView
     private lateinit var navController: NavController
-    lateinit var homeBinding: FragmentHomeBinding
     private lateinit var viewModel: HomeViewModel
+    lateinit var homeBinding: FragmentHomeBinding
     lateinit var popularAdapter: MovieAdapter
     lateinit var topRatedAdapter: MovieAdapter
     lateinit var upcomingAdapter: MovieAdapter
-    val TAG = "HomeFragment"
+    private val TAG = "HomeFragment"
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -55,8 +57,6 @@ class HomeFragment : Fragment() {
         setUpPopularRv()
         setUpTopRatedRv()
         setUpUpcomingRv()
-
-
 
         viewModel.popularMovies.observe(viewLifecycleOwner, Observer { response ->
             when (response) {
@@ -116,6 +116,14 @@ class HomeFragment : Fragment() {
                     showProgressBar()
                 }
             }
+        })
+
+        viewModel.mainMoviePoster.observe(viewLifecycleOwner, Observer {
+            Toast.makeText(requireActivity(),it.data,Toast.LENGTH_SHORT).show()
+            Glide.with(requireActivity())
+                .load("${it.data}")
+                .centerCrop()
+                .into(homeBinding.mainMoviePoster)
         })
 
 

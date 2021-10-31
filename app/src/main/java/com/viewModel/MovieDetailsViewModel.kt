@@ -27,23 +27,23 @@ class MovieDetailsViewModel( var fullDetails: Result) : ViewModel() {
 
     }
 
-    fun movieName() = viewModelScope.launch {
+    private fun movieName() = viewModelScope.launch {
         name.value = fullDetails.title
     }
 
-    fun moviePoster() = viewModelScope.launch {
+    private fun moviePoster() = viewModelScope.launch {
         poster.value = fullDetails.poster_path
     }
 
-    fun movieBackPoster() = viewModelScope.launch {
+    private fun movieBackPoster() = viewModelScope.launch {
         backPoster.value = fullDetails.backdrop_path
     }
 
-    fun movieOverview() = viewModelScope.launch {
+    private fun movieOverview() = viewModelScope.launch {
         overview.value = fullDetails.overview
     }
 
-    fun movieRating() = viewModelScope.launch {
+    private fun movieRating() = viewModelScope.launch {
         rating.value = fullDetails.vote_average.toString()
     }
 

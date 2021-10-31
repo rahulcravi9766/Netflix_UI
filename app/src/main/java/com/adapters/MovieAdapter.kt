@@ -27,10 +27,12 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
     }
 
     private val differCallback = object : DiffUtil.ItemCallback<Result>() {
+        //Called to check whether two objects represent the same item
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id == newItem.id
         }
 
+        //Called to check whether two items have the same data
         override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem == newItem
         }
@@ -54,7 +56,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.MovieViewHolder>() {
 
         }
         holder.itemView.setOnClickListener {
-                onItemClickListener?.let { it(result) }
+            onItemClickListener?.let { it(result) }
         }
     }
 
